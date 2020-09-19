@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+</head>
+<body>
+<div>
+<div>
+{% if albums %}
+	{% for album in albums %}
+		<div>
+			<div>
+				<a href="{% url 'musicmanagement:detail' album.id %}"></a>
+				<div>
+					<h2>{{album.album_title}}</h2>
+					<a href="{% url 'musicmanagement:detail' album.id %}"> View Details</a>
+					<form action="{% url 'musicmanagement:delete_album' album.id %}" method="post" style="display:inline;">
+						<input type="hidden" name="album.id" value="{{album.id}}">
+						<button type="submit">Submit</button>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% else %}
+		<div>
+			<br>
+			<a href="{% url 'musicmanagement:create_album' %}">
+				<button type="button"> Add an Album</button>
+			</a>
+
+		</div>
+{% endif %}
+</div>
+<div>
+	{% if songs %}
+		<div>
+			<div>
+				<h2>Songs</h2>
+			</div>
+			<div>
+				<div>
+					<div>
+						<table>
+							<thead>
+								<tr>
+									<th> SOng title</th>
+									<th>Audio file</th>
+									<th>Album</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for song in songs %}
+									<tr>
+										<td>{{ song.song_title}}</td>
+										<td>
+											<a target="_blank" href="{{song.audio_file.url}}">
+												<button type="button">Play</button>
+											</a>
+										</td>
+										<td>
+											<a href="{% url 'musicmanagement:detail' song.album.id}">de</a>
+											<a href="{% url 'musicmanagement:detail' song.album.id}">{{song.album.album_title}}</a>
+										</td>
+									</tr>
+								{% endfor%}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+</div>
+</div>
+</body>
+</html>

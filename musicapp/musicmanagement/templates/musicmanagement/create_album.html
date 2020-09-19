@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create_album</title>
+</head>
+<body>
+	<div>
+		<div>
+			<div>
+				<div>
+					<div>
+						<h3>Add a New Album</h3>
+						<form class="form-horizontal" role="form" action="" method="get">
+							{% for field in form %}
+                                <div class="form-group">
+                                    <label for="song_title">{{ field.label_tag }}</label>
+                                    <div>{{ field }}</div>
+                                 </div>
+                            {% endfor %}
+							<button type="submit">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>detail</title>
+</head>
+<body>
+	<div>
+		<div>
+			<div>
+				<div>
+					<div>
+						<h1>{{album.album_title}}</h1>
+					</div>
+				</div>
+			</div>
+			<div>
+				<ul>
+					<li><a href="{% url 'musicmanagement:detail' album.id %}"> View all song</a></li>
+					<li><a href="{% url 'musicmanagement:create_song' album.id %}">Add new Song</a></li>
+				</ul>
+				<div>
+					<div>
+						<h3>All SOngs</h3>
+						{% if error_messege %}
+							<p>{{error_messege}}</p>
+						{% endif %}
+
+						<table>
+							<thead>
+								<tr>
+									<th>Title</th>
+									<th>Audio File</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for song in album.song_set.all %}
+								<tr>
+									<td>{{song.song_title}}</td>
+									<td>
+										<a target = "_blank" href="{{song.audio_file.url}}">
+											<button>Play</button>
+										</a>
+									</td>
+									<td>
+										<form action="{% url 'musicmanagement:delete_song' album.id song.id %}" method="post" style="display: inline;">
+											<input type="hidden" name="song_id" value="{{song.id}}">
+											<button type="submit"> Delete</button>
+										</form>
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
