@@ -1,7 +1,7 @@
 from django.shortcuts import render , get_object_or_404
 from django.db.models import Q
-from .forms import AlbumForm , SongForm
-from .models import Album,Song
+from .forms import AlbumForm , SongForm , ArtistForm
+from .models import Album,Song,Artist
 
 # Create your views here.
 def create_album(request):
@@ -11,10 +11,19 @@ def create_album(request):
         album.save()
         return render(request,'musicmanagement/detail.html',{'album' : album})
 
-    context={
-        "form" : form
-    }
+    context={"form" : form }
     return render(request , 'musicmanagement/create_album.html', context)
+
+def create_artist(request):
+    form = ArtistForm(request.POST or None , request.FILES or None)
+    if form.is_valid():
+        artist = form.save(commit = False)
+        artist.save()
+        return render(request , 'musicmanagement/detail.html',{ 'artist' : artist})
+
+    context={"form" : form }
+    return render(request , 'musicmanagement/create_album.html',context)
+
 
 def create_song(request , album_id):
     form = SongForm(request.POST or None , request.FILES or None)
