@@ -6,7 +6,7 @@
 <body>
 <div>
     {% if songs %}
-    <h1>All Songs</h1>
+    <h1>Songs for your search </h1>
     <table>
 	    <thead>
 			<tr>
@@ -31,7 +31,7 @@
 				    {{song.album.album_title}}
 			    </td>
 			    <td>
-		            {{song.artist.artist_name}}
+				    {{song.artist.artist_name}}
 			    </td>
 			    <td>
 		            <form action="{% url 'musicmanagement:delete_song' song.id %}" method="post" style="display:inline;">
@@ -47,25 +47,11 @@
 		{% endfor%}
 		</tbody>
 	</table>
+	{% else %}
+	<div>
+	    <h4>found Nothing related to your search </h4>
+	</div>
     {% endif %}
 </div>
-<div>
-    <br>
-	<a href="{% url 'musicmanagement:create_song' %}">
-	    <button type="button"> Add a Song</button>
-	</a>
-	<a href="{% url 'musicmanagement:create_album' %}">
-	    <button type="button"> Add an Album</button>
-	</a>
-	<a href="{% url 'musicmanagement:create_artist' %}">
-	    <button type="button"> Add an Artist</button>
-	</a>
-</div>
-{% if songs %}
-<form name="myform" method="get" action="{% url 'musicmanagement:search' %}" style="display:inline;">
-<input type="text" name="search" placeholder="Search">
-<button type="submit">Search</button>
-</form>
-{% endif %}
 </body>
 </html>

@@ -6,10 +6,9 @@ app_name = 'musicmanagement'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
-    #url(r'^songs/(?P<filter_by>[a-zA_Z]+)/$', views.songs, name='songs'),
     url(r'^create_album/$', views.create_album, name='create_album'),
-    url(r'^(?P<album_id>[0-9]+)/create_song/$', views.create_song, name='create_song'),
-    url(r'^(?P<album_id>[0-9]+)/delete_song/(?P<song_id>[0-9]+)/$', views.delete_song, name='delete_song'),
-    url(r'^(?P<album_id>[0-9]+)/delete_album/$', views.delete_album, name='delete_album'),
+    url(r'^create_artist/$', views.create_artist, name='create_artist'),
+    url(r'^create_song/$', views.create_song, name='create_song'),
+    url(r'^search/$', views.search, name='search'),
+    url(r'^(?P<song_id>[0-9]+)/delete_song/$', views.delete_song, name='delete_song'),
 ]
