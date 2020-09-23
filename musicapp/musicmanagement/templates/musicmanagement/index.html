@@ -11,9 +11,9 @@
 	    <thead>
 			<tr>
 				<th>Song title</th>
-				<th>Audio file</th>
 				<th>Album</th>
 				<th>Artist</th>
+				<th>Audio file</th>
 				<th>Delete Song</th>
 				<th>Download Song</th>
 			</tr>
@@ -23,15 +23,15 @@
 			<tr>
 			    <td>{{ song.song_title}}</td>
 			    <td>
+				    {{song.album}}
+			    </td>
+			    <td>
+		            {{song.artist}}
+			    </td>
+			    <td>
 				    <a target="_blank" href="{{song.audio_file.url}}">
 					    <button type="button">Play</button>
 				    </a>
-			    </td>
-			    <td>
-				    {{song.album.album_title}}
-			    </td>
-			    <td>
-		            {{song.artist.artist_name}}
 			    </td>
 			    <td>
 		            <form action="{% url 'musicmanagement:delete_song' song.id %}" method="post" style="display:inline;">
@@ -53,12 +53,6 @@
     <br>
 	<a href="{% url 'musicmanagement:create_song' %}">
 	    <button type="button"> Add a Song</button>
-	</a>
-	<a href="{% url 'musicmanagement:create_album' %}">
-	    <button type="button"> Add an Album</button>
-	</a>
-	<a href="{% url 'musicmanagement:create_artist' %}">
-	    <button type="button"> Add an Artist</button>
 	</a>
 </div>
 {% if songs %}

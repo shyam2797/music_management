@@ -6,6 +6,9 @@
 <body>
     <div>
         <h3>Add a New Song</h3>
+        {% if error %}
+        <p><strong><i>{{ error }}</i></strong></p>
+        {% endif %}
         <form role="form" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% include 'musicmanagement/form_template.html' %}
